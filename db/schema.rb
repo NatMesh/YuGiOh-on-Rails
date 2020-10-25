@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_25_163815) do
+ActiveRecord::Schema.define(version: 2020_10_25_235403) do
 
   create_table "cards", force: :cascade do |t|
     t.string "name"
@@ -24,4 +24,18 @@ ActiveRecord::Schema.define(version: 2020_10_25_163815) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "monster_cards", force: :cascade do |t|
+    t.integer "attack"
+    t.integer "defense"
+    t.integer "level"
+    t.string "monster_attribute"
+    t.integer "link_value"
+    t.integer "scale"
+    t.integer "card_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["card_id"], name: "index_monster_cards_on_card_id"
+  end
+
+  add_foreign_key "monster_cards", "cards"
 end
