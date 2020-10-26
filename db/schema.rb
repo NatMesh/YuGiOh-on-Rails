@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_25_235403) do
+ActiveRecord::Schema.define(version: 2020_10_26_011248) do
 
   create_table "cards", force: :cascade do |t|
     t.string "name"
@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 2020_10_25_235403) do
   end
 
   create_table "monster_cards", force: :cascade do |t|
-    t.integer "attack"
-    t.integer "defense"
-    t.integer "level"
+    t.integer "attack", default: 0
+    t.integer "defense", default: 0
+    t.integer "level", default: 0
     t.string "monster_attribute"
-    t.integer "link_value"
-    t.integer "scale"
+    t.integer "link_value", default: 0
+    t.integer "scale", default: 0
     t.integer "card_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
