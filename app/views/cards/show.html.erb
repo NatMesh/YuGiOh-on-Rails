@@ -1,2 +1,7 @@
 <h1><%= @card.name %></h1>
-<p>Find me in app/views/cards/show.html.erb</p>
+<% if @card.card_type.include?("Monster")%>
+  <h1>You have a monster card</h1>
+
+<% else %>
+  <h1>No monster cards</h1>
+<% end %>
