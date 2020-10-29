@@ -1,2 +1,8 @@
-<h1>Cards#index</h1>
-<p>Find me in app/views/cards/index.html.erb</p>
+<h2 class="ml-3">YU-Gi-Oh! IT'S TIME TO DUEL!!!</h2>
+
+<ul>
+  <% @cards.each do |card| %>
+    <li><%= link_to card.name, card %></li>
+  <% end %>
+</ul>
+
