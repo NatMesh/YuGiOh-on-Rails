@@ -1,6 +1,8 @@
 #needed to gain access to json methods and properties in rails
 require 'json'
 
+LinkMarker.delete_all
+Marker.delete_all
 MonsterCard.delete_all
 Card.delete_all
 
@@ -11,7 +13,7 @@ yugioh_cards = JSON.parse(file)
 
 
 
-yugioh_cards["data"].each do |y|
+yugioh_cards["data"][0..150].each do |y|
   #creates our card record
   if y["archetype"].nil?
     card = Card.find_or_create_by(
@@ -54,6 +56,13 @@ yugioh_cards["data"].each do |y|
           monster_attribute: y["attribute"],
           link_value: y["linkval"]
         )
+
+      #We will now create the marker and link_marker table since it only pertains to link monsters
+      markers = y["linkmarkers"].split(",")
+      markers.each do |marker_name|
+        marker = Marker.find_or_create_by(marker_direction: marker_name)
+        LinkMarker.create(monster_card: monster_card, marker: marker)
+      end
     else
     monster_card = card.monster_cards.create(
           attack: y["atk"],
@@ -64,9 +73,9 @@ yugioh_cards["data"].each do |y|
     end
 
     if monster_card&.valid?
-      puts "monster card created"
+      #puts "monster card created"
     else
-      puts "Invalid monster_card #{monster_card.errors.messages}"
+      #puts "Invalid monster_card #{monster_card.errors.messages}"
     end
 
   # else
@@ -76,6 +85,8 @@ end
 
 puts "Created #{Card.count} cards"
 puts "Created #{MonsterCard.count} monster cards"
+puts "Created #{Marker.count} Markers"
+puts "Created #{LinkMarker.count} LinkMarkers"
 
 #THIS DEFINES A CARD IN OUR TABLE
 #:name, :card_type, :description, :race, :card_image, :card_image_small

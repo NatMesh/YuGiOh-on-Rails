@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_011248) do
+ActiveRecord::Schema.define(version: 2020_10_30_092125) do
 
   create_table "cards", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(version: 2020_10_26_011248) do
     t.string "archetype"
     t.string "card_image"
     t.string "card_image_small"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "link_markers", force: :cascade do |t|
+    t.integer "monster_card_id", null: false
+    t.integer "marker_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["marker_id"], name: "index_link_markers_on_marker_id"
+    t.index ["monster_card_id"], name: "index_link_markers_on_monster_card_id"
+  end
+
+  create_table "markers", force: :cascade do |t|
+    t.string "marker_direction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -37,5 +52,7 @@ ActiveRecord::Schema.define(version: 2020_10_26_011248) do
     t.index ["card_id"], name: "index_monster_cards_on_card_id"
   end
 
+  add_foreign_key "link_markers", "markers"
+  add_foreign_key "link_markers", "monster_cards"
   add_foreign_key "monster_cards", "cards"
 end
