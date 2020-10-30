@@ -1,2 +1,39 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>All Things Yu-Gi-Oh!</h1>
+<div class="row">
+  <div class="col-sm">
+    <h2>10 Random Yu-Gi-Oh Cards!</h2>
+
+    <% @cards.each do |card| %>
+      <div>
+        <div class="row mb-3">
+          <div class="col-sm-12 col-md-6 col-lg-3">
+            <a href="<%= card_path(card) %>"><img class="img-fluid" src="<%= card.card_image_small %>" alt="<%= card.name %>"></a>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-9">
+            <h4><strong>Name:</strong> <%= link_to card.name, card %></h4>
+            <p><strong>Card Type:</strong> <em><%= card.card_type %></em></p>
+            <p><strong>Card Sub Type:</strong> <em><%= card.race %></em></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-sm">
+    <h2>Videos on How to Get Started in Yu-Gi-Oh!</h2>
+    <ol>
+      <li><a href="https://www.youtube.com/watch?v=55gsu3_36Fs&ab_channel=Cimoooooooo">How to Play Yu-Gi-Oh in 3 Minutes!</a></li>
+      <li><a href="https://www.youtube.com/watch?v=l_Xj_xMVmAw&ab_channel=TeamAPS">Things Every New Player Should Do!</a></li>
+      <li><a href="https://www.youtube.com/watch?v=s1QsMX9MwHA&ab_channel=Cimoooooooo">Detailed How to Play Yu-Gi-Oh!</a></li>
+      <li><a href="https://www.youtube.com/watch?v=Ji5Y0V3o_ys&ab_channel=Cimoooooooo">Turn Structure in Yu-Gi-Oh!</a></li>
+      <li><a href="https://www.youtube.com/watch?v=zw2NBRKNMhg&ab_channel=Cimoooooooo">Normal Summoning, Sets, and Tribute Summoning in Yu-Gi-Oh!</a></li>
+      <li><a href="https://www.youtube.com/watch?v=Jv04D1nDzeM&ab_channel=Cimoooooooo">Flip Summoning and Special Summoning in Yu-Gi-Oh!</a></li>
+      <li><a href="https://www.youtube.com/watch?v=_avm719bV2w&ab_channel=Cimoooooooo">Fusion Summoning in Yu-Gi-Oh!</a></a></li>
+      <li><a href="https://www.youtube.com/watch?v=PVHp60pNtow&ab_channel=Cimoooooooo">Ritual Summoning in Yu-Gi-Oh!</a></li>
+      <li><a href="https://www.youtube.com/watch?v=vWFRf_eq42o&ab_channel=Cimoooooooo">Synchro Summoning in Yu-Gi-Oh!</a></li>
+      <li><a href="https://www.youtube.com/watch?v=mNZrQAB1HcU&ab_channel=Cimoooooooo">XYZ Summoning in Yu-Gi-Oh!</a></li>
+      <li><a href="https://www.youtube.com/watch?v=5BBrXaX-qp4&ab_channel=Cimoooooooo">Link Summoning in Yu-Gi-Oh!</a></li>
+      <li><a href="https://www.youtube.com/watch?v=NLQhwBKm86A&t=1s&ab_channel=Cimoooooooo">Pendulum Summoning in Yu-Gi-Oh!</a></li>
+    </ol>
+  </div>
+</div>
