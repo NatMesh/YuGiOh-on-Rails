@@ -1,10 +1,10 @@
 <%# Determines if our card is monster %>
 <% if @card.card_type.include?("Monster")%>
-  <h1>You have a monster card</h1>
 
   <div class="row mb-3">
+    <%# Card image %>
     <div class="col-sm-12 col-md-4 col-lg-5">
-      <img class="mb-3" src="<%= @card.card_image %>" alt="<%= @card.name %>">
+      <img class="mb-3 img-fluid" src="<%= @card.card_image %>" alt="<%= @card.name %>">
     </div>
 
     <%# Determines if the monster is Pendulum %>
@@ -51,7 +51,7 @@
     <% end %>
 
 
-    <div class="col-sm-12 col-md-4 col-lg-2">
+    <div class="col-sm-12 col-md-4 col-lg-2 set_border">
     <%# This will be implemented when card price models are created %>
       <p>card prices</p>
     </div>
@@ -61,26 +61,27 @@
 
 <%# if not a monster it is either Spell, trap or Skill card %>
 <% else %>
-  <h1>No monster cards</h1>
 
-  <div class="row mb-3">
+  <div class="row">
     <%# Card image %>
     <div class="col-sm-12 col-md-4 col-lg-5">
-      <img src="<%= @card.card_image %>" alt="<%= @card.name %>">
+      <img class="mb-3 img-fluid" src="<%= @card.card_image %>" alt="<%= @card.name %>">
     </div>
 
     <%# Card attributes %>
     <div class="col-sm-12 col-md-4 col-lg-5 set_border">
-      <p>djfhjksdhfkjhdkfhdk</p>
+      <h5><strong>Name:</strong> <em><%= @card.name %></em></h5>
+      <h5><strong>Card Type:</strong> <em><%= @card.card_type %></em></h5>
+      <h5><strong>Effect/Description:</strong> <em><%= @card.description %></em></h5>
       <% if !(@card.archetype.nil?)%>
-        <p><%=@card.archetype%></p>
+        <h5><strong>Archetype:</strong> <em><%= @card.archetype %></em></h5>
       <% end %>
     </div>
 
     <%# Card prices based on set and rarity %>
     <div class="col-sm-12 col-md-4 col-lg-2 set_border">
       <%# This will be implemented when card price models are created %>
-      <p>card prices</p>
+      <p>card pricescard pricescard pricescard </p>
     </div>
   </div>
 <% end %>
