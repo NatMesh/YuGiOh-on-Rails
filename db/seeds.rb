@@ -1,6 +1,9 @@
 #needed to gain access to json methods and properties in rails
 require 'json'
 
+
+CardPrice.delete_all
+CardSeller.delete_all
 LinkMarker.delete_all
 Marker.delete_all
 MonsterCard.delete_all
@@ -34,6 +37,16 @@ yugioh_cards["data"][0..150].each do |y|
           card_image: y["card_images"][0]["image_url"],
           card_image_small: y["card_images"][0]["image_url_small"]
         )
+  end
+
+  #We will create our CardSeller records here after a card has been created and enter all our card prices too our
+  #CardPrice table
+  sellers = y["card_prices"][0].keys
+  sellers.each do |name|
+    #puts y["name"]
+    #puts y["card_prices"][0][name]
+    seller= CardSeller.find_or_create_by(seller_name: name[0..((name.index('_'))-1)])
+    CardPrice.create(card: card, card_seller: seller, price: y["card_prices"][0][name])
   end
 
   #if card is valid and it is a monster type card we will add a record to our MonsterCard table
@@ -81,12 +94,16 @@ yugioh_cards["data"][0..150].each do |y|
   # else
   #   puts "Invalid card #{card.errors.messages}"
   end
+
+
 end
 
 puts "Created #{Card.count} cards"
 puts "Created #{MonsterCard.count} monster cards"
 puts "Created #{Marker.count} Markers"
 puts "Created #{LinkMarker.count} LinkMarkers"
+puts "Created #{CardSeller.count} Card Sellers"
+puts "Created #{CardPrice.count} Card Prices"
 
 #THIS DEFINES A CARD IN OUR TABLE
 #:name, :card_type, :description, :race, :card_image, :card_image_small

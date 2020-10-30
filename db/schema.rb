@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_092125) do
+ActiveRecord::Schema.define(version: 2020_10_30_104045) do
+
+  create_table "card_prices", force: :cascade do |t|
+    t.integer "card_id", null: false
+    t.integer "card_seller_id", null: false
+    t.string "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["card_id"], name: "index_card_prices_on_card_id"
+    t.index ["card_seller_id"], name: "index_card_prices_on_card_seller_id"
+  end
+
+  create_table "card_sellers", force: :cascade do |t|
+    t.string "seller_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "cards", force: :cascade do |t|
     t.string "name"
@@ -52,6 +68,8 @@ ActiveRecord::Schema.define(version: 2020_10_30_092125) do
     t.index ["card_id"], name: "index_monster_cards_on_card_id"
   end
 
+  add_foreign_key "card_prices", "card_sellers"
+  add_foreign_key "card_prices", "cards"
   add_foreign_key "link_markers", "markers"
   add_foreign_key "link_markers", "monster_cards"
   add_foreign_key "monster_cards", "cards"
