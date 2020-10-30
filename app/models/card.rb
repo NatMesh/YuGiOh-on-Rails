@@ -6,6 +6,8 @@ class Card < ApplicationRecord
   validates :name, :card_type, :description, :race, :card_image, :card_image_small, presence: true
   validates :name, uniqueness: true
 
+  paginates_per 20
+
   def markers_list
     monster_cards.first.markers.map(&:marker_direction).join(", ")
   end
