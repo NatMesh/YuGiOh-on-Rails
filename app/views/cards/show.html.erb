@@ -1,4 +1,5 @@
 <%# Determines if our card is monster %>
+<h1><%= @card.monster_cards.first.monster_attribute %></h1>
 <% if @card.card_type.include?("Monster")%>
 
   <div class="row mb-3">
@@ -11,11 +12,11 @@
     <% if @card.card_type.include?("Pendulum") %>
       <div class="col-sm-12 col-md-4 col-lg-5 set_border">
         <h5><strong>Name:</strong> <em><%= @card.name %></em></h5>
-        <h5><strong>Level:</strong> <em><%= @monster.level %></em></h5>
+        <h5><strong>Level:</strong> <em><%= @card.monster_cards.first.level %></em></h5>
         <h5><strong>Card Type:</strong> <em><%= @card.card_type %></em></h5>
-        <h5><strong>Attribute:</strong> <em><%= @monster.monster_attribute %></em></h5>
-        <h5><strong>Stats: ATK/</strong><em><%= @monster.attack %></em> <strong>DEF/</strong><em><%= @monster.defense %></em></h5>
-        <h5><strong>Scales:</strong> <em><%= @monster.scale %></em></h5>
+        <h5><strong>Attribute:</strong> <em><%= @card.monster_cards.first.monster_attribute %></em></h5>
+        <h5><strong>Stats: ATK/</strong><em><%= @card.monster_cards.first.attack %></em> <strong>DEF/</strong><em><%= @card.monster_cards.first.defense %></em></h5>
+        <h5><strong>Scales:</strong> <em><%= @card.monster_cards.first.scale %></em></h5>
         <h5><strong>Effect/Description:</strong> <em><%= @card.description %></em></h5>
         <% if !(@card.archetype.nil?)%>
           <h5><strong>Archetype:</strong> <em><%= @card.archetype %></em></h5>
@@ -26,9 +27,9 @@
       <div class="col-sm-12 col-md-4 col-lg-5 set_border">
         <h5><strong>Name:</strong> <em><%= @card.name %></em></h5>
         <h5><strong>Card Type:</strong> <em><%= @card.card_type %></em></h5>
-        <h5><strong>Attribute:</strong> <em><%= @monster.monster_attribute %></em></h5>
-        <h5><strong>Stats: ATK/</strong><em><%= @monster.attack %></em></h5>
-        <h5><strong>Link:</strong> <em><%= @monster.link_value %></em></h5>
+        <h5><strong>Attribute:</strong> <em><%= @card.monster_cards.first.monster_attribute %></em></h5>
+        <h5><strong>Stats: ATK/</strong><em><%= @card.monster_cards.first.attack %></em></h5>
+        <h5><strong>Link:</strong> <em><%= @card.monster_cards.first.link_value %></em></h5>
         <%# This is where all Link directions will go when model is complete %>
         <h5><strong>Effect/Description:</strong> <em><%= @card.description %></em></h5>
         <% if !(@card.archetype.nil?)%>
@@ -39,10 +40,10 @@
     <% else %>
       <div class="col-sm-12 col-md-4 col-lg-5 set_border">
         <h5><strong>Name:</strong> <em><%= @card.name %></em></h5>
-        <h5><strong>Level:</strong> <em><%= @monster.level %></em></h5>
+        <h5><strong>Level:</strong> <em><%= @card.monster_cards.first.level %></em></h5>
         <h5><strong>Card Type:</strong> <em><%= @card.card_type %></em></h5>
-        <h5><strong>Attribute:</strong> <em><%= @monster.monster_attribute %></em></h5>
-        <h5><strong>Stats: ATK/</strong><em><%= @monster.attack %></em> <strong>DEF/</strong><em><%= @monster.defense %></em></h5>
+        <h5><strong>Attribute:</strong> <em><%= @card.monster_cards.first.monster_attribute %></em></h5>
+        <h5><strong>Stats: ATK/</strong><em><%= @card.monster_cards.first.attack %></em> <strong>DEF/</strong><em><%= @card.monster_cards.first.defense %></em></h5>
         <h5><strong>Effect/Description:</strong> <em><%= @card.description %></em></h5>
         <% if !(@card.archetype.nil?)%>
           <h5><strong>Archetype:</strong> <em><%= @card.archetype %></em></h5>
