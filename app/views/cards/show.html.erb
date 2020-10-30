@@ -10,6 +10,7 @@
     <%# Determines if the monster is Pendulum %>
     <% if @card.card_type.include?("Pendulum") %>
       <div class="col-sm-12 col-md-4 col-lg-4 set_border">
+        <h4><strong>Card Details</strong></h4>
         <h5><strong>Name:</strong> <em><%= @card.name %></em></h5>
         <h5><strong>Level:</strong> <em><%= @card.monster_cards.first.level %></em></h5>
         <h5><strong>Card Type:</strong> <em><%= @card.card_type %></em></h5>
@@ -24,6 +25,7 @@
     <%# Determines if the monster is Link %>
     <% elsif @card.card_type.include?("Link") %>
       <div class="col-sm-12 col-md-4 col-lg-4 set_border">
+        <h4><strong>Card Details</strong></h4>
         <h5><strong>Name:</strong> <em><%= @card.name %></em></h5>
         <h5><strong>Card Type:</strong> <em><%= @card.card_type %></em></h5>
         <h5><strong>Attribute:</strong> <em><%= @card.monster_cards.first.monster_attribute %></em></h5>
@@ -39,6 +41,7 @@
     <%# Otherwise can be any other monster category %>
     <% else %>
       <div class="col-sm-12 col-md-4 col-lg-4 set_border">
+        <h4><strong>Card Details</strong></h4>
         <h5><strong>Name:</strong> <em><%= @card.name %></em></h5>
         <h5><strong>Level:</strong> <em><%= @card.monster_cards.first.level %></em></h5>
         <h5><strong>Card Type:</strong> <em><%= @card.card_type %></em></h5>
@@ -54,13 +57,19 @@
 
     <div class="col-sm-12 col-md-4 col-lg-3 set_border">
     <%# This will be implemented when card price models are created %>
-      <h5><strong>Card Prices Lowest Listing By Seller:</strong></h5>
-      <p><strong>Note: If price is zero card is unavailable on that site</strong></p>
-      <% @card.card_prices.each do |cost| %>
-        <h5><strong>Amazon: </strong> $<em><%= cost.price %></em></h5>
+      <h4><strong>Card Prices</strong></h4>
+      <h5><strong>Lowest Listing By Seller:</strong></h5>
+      <p><strong>Note: If price is $0.00 card is unavailable on that site</strong></p>
+      <%# Takes our list of sellers and creates a 2D array along with the associated prices %>
+      <% x = @sellers%>
+      <% y = @card.card_prices%>
+      <% z = x.zip(y)%>
+
+      <%# Itterates through our 2D array to give us the display %>
+      <% z.each do |seller, cost|%>
+        <h5><strong><%= seller.seller_name %></strong>: $<em><%= cost.price %></em></h5>
       <% end %>
     </div>
-
 
   </div>
 
@@ -75,6 +84,7 @@
 
     <%# Card attributes %>
     <div class="col-sm-12 col-md-4 col-lg-4 set_border">
+      <h4><strong>Card Details</strong></h4>
       <h5><strong>Name:</strong> <em><%= @card.name %></em></h5>
       <h5><strong>Card Type:</strong> <em><%= @card.card_type %></em></h5>
       <h5><strong>Effect/Description:</strong> <em><%= @card.description %></em></h5>
@@ -86,10 +96,17 @@
     <%# Card prices based on set and rarity %>
     <div class="col-sm-12 col-md-4 col-lg-3 set_border">
     <%# This will be implemented when card price models are created %>
-      <h5><strong>Card Prices Lowest Listing By Seller:</strong></h5>
-      <p><strong>Note: If price is zero card is unavailable on that site</strong></p>
-      <% @card.card_sellers.zip(@card.card_prices).each do |seller, cost| %>
-        <h5><strong>seller.seller_name: </strong> $<em><%= cost.price %></em></h5>
+      <h4><strong>Card Prices</strong></h4>
+      <h5><strong>Lowest Listing By Seller:</strong></h5>
+      <p><strong>Note: If price is $0.00 card is unavailable on that site</strong></p>
+      <%# Takes our list of sellers and creates a 2D array along with the associated prices %>
+      <% x = @sellers%>
+      <% y = @card.card_prices%>
+      <% z = x.zip(y)%>
+
+      <%# Itterates through our 2D array to give us the display %>
+      <% z.each do |seller, cost|%>
+        <h5><strong><%= seller.seller_name %></strong>: $<em><%= cost.price %></em></h5>
       <% end %>
     </div>
   </div>

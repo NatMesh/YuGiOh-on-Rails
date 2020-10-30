@@ -16,7 +16,7 @@ yugioh_cards = JSON.parse(file)
 
 
 
-yugioh_cards["data"][0..150].each do |y|
+yugioh_cards["data"][1..1000].each do |y|
   #creates our card record
   if y["archetype"].nil?
     card = Card.find_or_create_by(
@@ -71,10 +71,12 @@ yugioh_cards["data"][0..150].each do |y|
         )
 
       #We will now create the marker and link_marker table since it only pertains to link monsters
-      markers = y["linkmarkers"].split(",")
+      markers = y["linkmarkers"]
       markers.each do |marker_name|
         marker = Marker.find_or_create_by(marker_direction: marker_name)
         LinkMarker.create(monster_card: monster_card, marker: marker)
+        #puts "Invalid Marker #{marker.errors.messages}"
+        #puts "Invalid LinkMarker #{x.errors.messages}"
       end
     else
     monster_card = card.monster_cards.create(

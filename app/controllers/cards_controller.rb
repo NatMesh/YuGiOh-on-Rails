@@ -17,6 +17,7 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
     @monster = MonsterCard.where(card_id: params[:id]).first
     @monsters = MonsterCard.includes(:card).all
+    @sellers = Card.find(params[:id]).card_sellers
   end
   #The @card variable will be shared with:
   #app/views/cards/show.html.erb
