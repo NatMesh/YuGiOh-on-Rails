@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  card: one
+  card_seller: one
+  price: MyString
+
+two:
+  card: two
+  card_seller: two
+  price: MyString
