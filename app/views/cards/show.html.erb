@@ -9,7 +9,7 @@
 
     <%# Determines if the monster is Pendulum %>
     <% if @card.card_type.include?("Pendulum") %>
-      <div class="col-sm-12 col-md-4 col-lg-5 set_border">
+      <div class="col-sm-12 col-md-4 col-lg-4 set_border">
         <h5><strong>Name:</strong> <em><%= @card.name %></em></h5>
         <h5><strong>Level:</strong> <em><%= @card.monster_cards.first.level %></em></h5>
         <h5><strong>Card Type:</strong> <em><%= @card.card_type %></em></h5>
@@ -23,7 +23,7 @@
       </div>
     <%# Determines if the monster is Link %>
     <% elsif @card.card_type.include?("Link") %>
-      <div class="col-sm-12 col-md-4 col-lg-5 set_border">
+      <div class="col-sm-12 col-md-4 col-lg-4 set_border">
         <h5><strong>Name:</strong> <em><%= @card.name %></em></h5>
         <h5><strong>Card Type:</strong> <em><%= @card.card_type %></em></h5>
         <h5><strong>Attribute:</strong> <em><%= @card.monster_cards.first.monster_attribute %></em></h5>
@@ -38,7 +38,7 @@
       </div>
     <%# Otherwise can be any other monster category %>
     <% else %>
-      <div class="col-sm-12 col-md-4 col-lg-5 set_border">
+      <div class="col-sm-12 col-md-4 col-lg-4 set_border">
         <h5><strong>Name:</strong> <em><%= @card.name %></em></h5>
         <h5><strong>Level:</strong> <em><%= @card.monster_cards.first.level %></em></h5>
         <h5><strong>Card Type:</strong> <em><%= @card.card_type %></em></h5>
@@ -52,9 +52,13 @@
     <% end %>
 
 
-    <div class="col-sm-12 col-md-4 col-lg-2 set_border">
+    <div class="col-sm-12 col-md-4 col-lg-3 set_border">
     <%# This will be implemented when card price models are created %>
-      <p>card prices</p>
+      <h5><strong>Card Prices Lowest Listing By Seller:</strong></h5>
+      <p><strong>Note: If price is zero card is unavailable on that site</strong></p>
+      <% @card.card_prices.each do |cost| %>
+        <h5><strong>Amazon: </strong> $<em><%= cost.price %></em></h5>
+      <% end %>
     </div>
 
 
@@ -70,7 +74,7 @@
     </div>
 
     <%# Card attributes %>
-    <div class="col-sm-12 col-md-4 col-lg-5 set_border">
+    <div class="col-sm-12 col-md-4 col-lg-4 set_border">
       <h5><strong>Name:</strong> <em><%= @card.name %></em></h5>
       <h5><strong>Card Type:</strong> <em><%= @card.card_type %></em></h5>
       <h5><strong>Effect/Description:</strong> <em><%= @card.description %></em></h5>
@@ -80,9 +84,13 @@
     </div>
 
     <%# Card prices based on set and rarity %>
-    <div class="col-sm-12 col-md-4 col-lg-2 set_border">
-      <%# This will be implemented when card price models are created %>
-      <p>card pricescard pricescard pricescard </p>
+    <div class="col-sm-12 col-md-4 col-lg-3 set_border">
+    <%# This will be implemented when card price models are created %>
+      <h5><strong>Card Prices Lowest Listing By Seller:</strong></h5>
+      <p><strong>Note: If price is zero card is unavailable on that site</strong></p>
+      <% @card.card_sellers.zip(@card.card_prices).each do |seller, cost| %>
+        <h5><strong>seller.seller_name: </strong> $<em><%= cost.price %></em></h5>
+      <% end %>
     </div>
   </div>
 <% end %>

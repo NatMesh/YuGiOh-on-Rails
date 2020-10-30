@@ -1,0 +1,7 @@
+<p class="mb-5">Found <%= pluralize(@cards.count, 'Card') %> when searching for: <%= params[:keywords] %></p>
+
+<ul>
+  <% @cards.each do |card|%>
+    <li><%= link_to card.name, card %></li>
+  <% end %>
+</ul>
