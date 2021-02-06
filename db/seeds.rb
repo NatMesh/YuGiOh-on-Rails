@@ -16,7 +16,7 @@ yugioh_cards = JSON.parse(file)
 
 
 
-yugioh_cards["data"][1..1000].each do |y|
+yugioh_cards["data"][1..10350].each do |y|
   #creates our card record
   if y["archetype"].nil?
     card = Card.find_or_create_by(
